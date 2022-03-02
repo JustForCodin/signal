@@ -8,9 +8,9 @@
 </head>
 <body>
     <h1>Welcome to chat room {{room}}</h1>
-    <div id="message"></div>
-    <form action="">
-        <input type="text" placeholder="Enter your message">
+    <div id="messages"></div>
+    <form action="" id="message-form">
+        <input type="text" id="message-input" placeholder="Enter your message">
         <button type="submit">Send</button>
     </form>
 </body>
@@ -22,10 +22,35 @@
             username: '{{ username }}',
             room: '{{ room }}'
         })
+
+        let messageInput = document.getElementById('message-input')
+        document.getElementById('message-form').onsubmit = (event) => {
+            event.preventDefault()
+            let message = messageInput.value.trim()
+            if (message.length > 0) {
+                socket.emit('send_message', {
+                    username: '{{ username }}',
+                    room: '{{ room }}',
+                    message: message
+                }) 
+            }
+            messageInput.value = ''
+            messageInput.focus()
+        }
     })
 
     socket.on('join_room_announcement', (data) => {
         console.log(data)
+        const newNode = document.createElement('div')
+        newNode.innerHTML = `<b>${data.username}</b> joined the room`
+        document.getElementById('messages').appendChild(newNode)
+    })
+
+    socket.on('recive_message', (data)=>{
+        console.log(data)
+        const newNode = document.createElement('div')
+        newNode.innerHTML = `<b>${data.username}</b> joined the room`
+        document.getElementById('messages').appendChild(newNode)
     })
 </script>
 </html>
