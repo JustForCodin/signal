@@ -1,8 +1,14 @@
-from flask import Flask, redirect, render_template, request
+from crypt import methods
+from flask import Flask, redirect, render_template, request, url_for
 from flask_socketio import SocketIO, join_room, leave_room
+from flask_login import LoginManager, LoginForm, login_user
+from db import get_user
+from user import User
 
 app = Flask(__name__)
 socketio = SocketIO(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 @app.route("/")
 def index():
@@ -32,6 +38,24 @@ def handle_leave_room_event(data):
     app.logger.info(f"{data['username']} has left the room {data['room']}")
     leave_room(data['room'])
     socketio.emit('leave_room_announcement', data, room=data['room'])
+
+@login_manager.user_loader
+def load_user(username):
+    return get_user(username)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    message = ''
+    if request.method == 'POST':
+        username = request.form.get('username')
+        submited_password = request.form.get('password')
+        user = get_user(username)
+        if user and user.check_password(submited_password):
+            login_user(user)
+            redirect(url_for('home'))
+        else:
+            message = 'Failed to login. Wrong username or password.'
+    return render_template('login.html', message=message)
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)
