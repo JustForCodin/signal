@@ -1,7 +1,7 @@
 from crypt import methods
 from flask import Flask, redirect, render_template, request, url_for
 from flask_socketio import SocketIO, join_room, leave_room
-from flask_login import LoginManager, LoginForm, login_user
+from flask_login import LoginManager, login_user
 from db import get_user
 from user import User
 
