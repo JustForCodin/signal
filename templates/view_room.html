@@ -7,12 +7,17 @@
     <title>Signal - chat</title>
 </head>
 <body>
-    <h1>Welcome to chat room {{room}}</h1>
+    <h1>Welcome to chat room: {{room.name}}</h1>
     <div id="messages"></div>
     <form action="" id="message-form">
         <input type="text" id="message-input" placeholder="Enter your message">
         <button type="submit">Send</button>
     </form>
+    <ul>
+        {% for member in room_members %}
+            <li>{{member._id.username}}</li>
+        {% endfor %}
+    </ul>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
 <script>
@@ -20,7 +25,7 @@
     socket.on('connect', () => {
         socket.emit('join_room', {
             username: '{{ username }}',
-            room: '{{ room }}'
+            room: '{{ room._id }}'
         })
 
         let messageInput = document.getElementById('message-input')
@@ -30,7 +35,7 @@
             if (message.length > 0) {
                 socket.emit('send_message', {
                     username: '{{ username }}',
-                    room: '{{ room }}',
+                    room: '{{ room._id }}',
                     message: message
                 }) 
             }
