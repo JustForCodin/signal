@@ -19,4 +19,4 @@ def save_user(username, email, password):
 
 def get_user(username):
     user_data = users_collection.find_one({'_id': username})
-    return User(user_data['username'], user_data['email'], user_data['password']) if user_data else None
+    return User(user_data['_id'], user_data['email'], user_data['password']) if user_data else None
