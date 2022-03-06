@@ -1,4 +1,6 @@
 from crypt import methods
+from email import message
+from hashlib import new
 from flask import Flask, redirect, render_template, request
 from flask_socketio import SocketIO, join_room, leave_room
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user
@@ -112,8 +114,12 @@ def edit_room(room_id):
     room = get_room(room_id)
     if room and is_room_admin(room_id, current_user.username):
         existing_room_members = [member['_id']['username'] for member in get_room_members(room_id)]
+
+        room_members_str = ",".join(existing_room_members)
+        message=''
         if request.method == 'POST':
             room_name = request.form.get('room_name')
+            room['name'] = room_name
             update_room(room_id, room_name)
 
             new_members = [username.strip() for username in request.form.get('members').split(',')]
@@ -125,8 +131,10 @@ def edit_room(room_id):
             
             if len(members_to_remove):
                 remove_room_members(room_id, members_to_remove)
-        room_members_str = ",".join(existing_room_members)
-        return render_template('edit_room.html', room=room, room_members_str=room_members_str)
+
+            message='Chages were saved.'
+            room_members_str = ",".join(new_members)
+        return render_template('edit_room.html', room=room, room_members_str=room_members_str, message=message)
     else:
         return 'Room not found', 404
 

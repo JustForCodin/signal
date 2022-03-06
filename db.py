@@ -38,6 +38,9 @@ def update_room(room_id, room_name):
     rooms_collection.update_one({
         '_id': ObjectId(room_id)
     }, {'$set': {'name': room_name}})
+    room_members_collection.update_many({
+        '_id.room_id': ObjectId(room_id)
+    }, {'$set': {'room_name': room_name}})
 
 def get_room(room_id):
     return rooms_collection.find_one({'_id': ObjectId(room_id)})
