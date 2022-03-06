@@ -8,7 +8,11 @@
 </head>
 <body>
     <h1>Welcome to chat room: {{room.name}}</h1>
-    <div id="messages"></div>
+    <div id="messages">
+        {% for message in messages %}
+            <div><b>{{ message.sender }}&nbsp;[{{ message.created_at }}]:&nbsp;</b> {{ message.text }}</div>
+        {% endfor %}
+    </div>
     <form action="" id="message-form">
         <input type="text" id="message-input" placeholder="Enter your message">
         <button type="submit">Send</button>
@@ -61,7 +65,7 @@
     socket.on('recive_message', (data)=>{
         console.log(data)
         const newNode = document.createElement('div')
-        newNode.innerHTML = `<b>${data.username}:&nbsp;</b> ${data.message}`
+        newNode.innerHTML = `<b>${data.username}&nbsp;[${data.created_at}]:&nbsp;</b> ${data.message}`
         document.getElementById('messages').appendChild(newNode)
     })
 </script>
