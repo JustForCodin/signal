@@ -1,5 +1,5 @@
 from datetime import datetime
-from pymongo import MongoClient
+from pymongo import MongoClient, DESCENDING
 from werkzeug.security import generate_password_hash
 from bson import ObjectId
 from user import User
@@ -99,7 +99,7 @@ def save_message(room_id, text, sender):
 
 def get_messages(room_id):
     messages = list(
-        messages_collection.find({'room_id': ObjectId(room_id)}))
+        messages_collection.find({'room_id': ObjectId(room_id)}).sort('_id', DESCENDING))
     for message in messages:
         message['created_at'] = message['created_at'].strftime("%d %b, %H:%M")
     return messages[::-1]

@@ -1,4 +1,5 @@
 from crypt import methods
+from datetime import datetime
 from email import message
 from hashlib import new
 from flask import Flask, redirect, render_template, request
@@ -41,6 +42,7 @@ def handle_join_room_event(data):
 @socketio.on('send_message')
 def handle_send_message_event(data):
     app.logger.info(f"{data['username']} has sent message to the room {data['room']}: {data['message']}")
+    data['created_at'] = datetime.now().strftime("%d %b, %H:%M")
     save_message(data['room'], data['message'], data['username'])
     socketio.emit('recive_message', data, room=data['room'])
 
@@ -75,7 +77,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return redirect('/')
+    return redirect('/login')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():

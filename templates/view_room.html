@@ -40,7 +40,7 @@
                 socket.emit('send_message', {
                     username: '{{ username }}',
                     room: '{{ room._id }}',
-                    message: message
+                    message: message,
                 }) 
             }
             messageInput.value = ''
