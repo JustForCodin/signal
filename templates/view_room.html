@@ -22,6 +22,9 @@
             <li>{{member._id.username}}</li>
         {% endfor %}
     </ul>
+    <div>
+        <button id="logout-btn" type="submit">Logout</button>
+    </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
 <script>
@@ -47,6 +50,10 @@
             messageInput.focus()
         }
     })
+
+    document.getElementById('logout-btn').onclick = (e) => {
+        window.location = '/logout'
+    }
 
     socket.on('join_room_announcement', (data) => {
         console.log(data)

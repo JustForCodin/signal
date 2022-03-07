@@ -11,6 +11,12 @@
     <h3>
         Hi, {% if current_user.is_authenticated %}{{current_user.username}}{% else %}Guest{% endif %}
     </h3>
+    <div>
+        {% if not current_user.is_authenticated %}
+            <button id="login-btn" type="submit">Login</button>
+            <button id="signup-btn" type="submit">Sign Up</button>
+        {% endif %}
+    </div>
     <ul>
         {% for room in rooms %}
             <li><a href="/rooms/{{room._id.room_id}}">{{ room.room_name }}</a></li>
@@ -18,4 +24,16 @@
     </ul>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
+<script defer>
+    window.onload = () => {
+
+        document.getElementById('login-btn').onclick = (e) => {
+            window.location = '/login'
+        }
+
+        document.getElementById('signup-btn').onclick = (e) => {
+            window.location = '/signup'
+        }
+    }
+</script>
 </html>

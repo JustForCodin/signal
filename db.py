@@ -65,9 +65,6 @@ def add_room_members(room_id, room_name, usernames, added_by):
         } for username in usernames]
     )
 
-def remove_room_member():
-    pass
-
 def remove_room_members(room_id, usernames):
     room_members_collection.delete_many({'_id': {'$in': 
         [{'room_id': room_id, 'username': username} for username in usernames]}})
