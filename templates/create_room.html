@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
+
     <title>Signal - Creating your room</title>
 </head>
 <body>
-    <h1>Create room</h1>
-    <h3>{{message}}</h3>
-    <form method="post">
+    <h1 class="title">New room</h1>
+    <h3 class="message">{{message}}</h3>
+    <form class="create-room-form" method="post">
         <input type="text" name="room_name" placeholder="Room name">
         <input type="text" name="members" placeholder="Add members">
-        <button type="submit">Create room</button>
+        <button class="create-btn" type="submit">Create room</button>
     </form>
 </body>
 </html>

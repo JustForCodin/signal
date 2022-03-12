@@ -4,24 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
     <title>Signal</title>
 </head>
 <body>
-    <h1>Signal</h1>
-    <h3>
-        Hi, {% if current_user.is_authenticated %}{{current_user.username}}{% else %}Guest{% endif %}
-    </h3>
-    <div>
-        {% if not current_user.is_authenticated %}
-            <button id="login-btn" type="submit">Login</button>
-            <button id="signup-btn" type="submit">Sign Up</button>
-        {% endif %}
+    <div class="main">
+        <h1 class="title">Signal</h1>
+        <h3 class="greeting">
+            Hi, {% if current_user.is_authenticated %}{{current_user.username}}{% else %}Guest{% endif %}
+        </h3>
+        <div class="options">
+            {% if not current_user.is_authenticated %}
+                <button class="login-btn" id="login-btn" type="submit">Login</button>
+                <button class="signup-btn" id="signup-btn" type="submit">Sign Up</button>
+            {% endif %}
+        </div>
+        <div class="rooms-list-title">
+            <b>Available rooms</b>
+        </div>
+        <ul class="rooms-list">
+            {% for room in rooms %}
+                <li><a class="room-url" href="/rooms/{{room._id.room_id}}">{{ room.room_name }}</a></li>
+            {% endfor %}
+        </ul>
     </div>
-    <ul>
-        {% for room in rooms %}
-            <li><a href="/rooms/{{room._id.room_id}}">{{ room.room_name }}</a></li>
-        {% endfor %}
-    </ul>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
 <script defer>

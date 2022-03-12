@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
     <title>Signal - Sign Up</title>
 </head>
 <body>
-    <h1>Sign Up</h1>
-    <h3>{{message}}</h3>
-    <form action="/signup" method="post">
+    <h1 class="title">Sign Up</h1>
+    <h3 class="message">{{message}}</h3>
+    <form class="signup-form" action="/signup" method="post">
         <input type="text" name="username" placeholder="Username">
         <input type="text" name="email" placeholder="Email">
         <input type="password" name="password" placeholder="Password">
-        <button type="submit">Sign Up</button>
+        <button class="signup-btn" type="submit">Sign Up</button>
     </form>
 </body>
 </html>

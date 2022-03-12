@@ -1,0 +1,246 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #101316;
+}
+
+/*  index page  */
+
+::-webkit-scrollbar {
+    width: 5px;
+    background-color: gray;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgb(52, 99, 72);
+}
+
+.main {
+    display: block;
+    width: 100%;
+    height: 900px;
+}
+
+.title {
+    padding-left: 45%;
+    padding-top: 10%;
+}
+
+.greeting {
+    padding-left: 45%;
+    padding-top: 1%;
+}
+
+.options {
+    padding-top: 10%;
+    padding-left: 40%;
+}
+
+button {
+    border: 1px solid greenyellow;
+    border-radius: 10px;
+    font-size: 1.2em;
+}
+
+.login-btn {
+    width: 15%;
+    height: 40px;
+    background-color: white;
+    color: black;
+}
+
+.signup-btn {
+    width: 15%;
+    height: 40px;
+    background-color: rgb(35, 141, 9);
+    color: white;
+}
+
+.rooms-list-title {
+    margin-left: 45%;
+    margin-top: 2%;
+    font-size: 1.4em;
+    color: white;
+}
+
+.rooms-list {
+    margin-left: 45%;
+    margin-top: 2%;
+    list-style-type: none;
+    overflow-y: scroll;
+    width: 15%;
+    height: 300px;
+    font-size: 1.4em;
+}
+
+.room-url {
+    text-decoration: none;
+    color: white;
+}
+
+.room-url:hover {
+    background-color: rgb(66, 168, 168);
+}
+
+.title {
+    color: white;
+    font-size: 2.7em;
+}
+
+.greeting {
+    color: white;
+    font-size: 1.4em;
+}
+
+/* login page */
+
+.login {
+    margin-top: 10%;
+    height: 800px;
+}
+
+.title-login {
+    padding-left: 43.5%;
+    padding-top: 5%;
+    color: white;
+    font-size: 2.6em;
+}
+
+.login-form {
+    padding-top: 2%;
+    padding-left: 42%;
+}
+
+.login-form input {
+    border: 1px solid greenyellow;
+    border-radius: 10px;
+    margin-top: 1%;
+    display: block;
+    width: 27%;
+    height: 40px;
+    font-size: 1.2em;
+}
+
+.login-form .login-btn {
+    margin-top: 1%;
+    margin-left: 6.6%;
+}
+
+.login-form .signup-btn {
+    margin-left: 0.6%;
+}
+
+.message {
+    color: rgb(245, 98, 0);
+    font-size: 1.7em;
+    margin-left: 35%;
+}
+
+.signup-url {
+    color: white;
+    font-size: 1.9em;
+    margin-top: 3%;
+    margin-left: 40%;
+}
+
+.signup-url a {
+    color:rgb(35, 141, 9);
+}
+
+/* signup page */
+
+.signup-form {
+    padding-top: 2%;
+    padding-left: 42%;
+}
+
+.signup-form input {
+    border: 1px solid greenyellow;
+    border-radius: 10px;
+    margin-top: 1%;
+    display: block;
+    width: 27%;
+    height: 40px;
+    font-size: 1.2em;
+}
+
+.signup-form .signup-btn {
+    margin-top: 1%;
+    margin-left: 6.6%;
+}
+
+/* create room page */
+
+.create-room-form {
+    padding-top: 2%;
+    padding-left: 42%;
+}
+
+.create-room-form input {
+    border: 1px solid greenyellow;
+    border-radius: 10px;
+    margin-top: 1%;
+    display: block;
+    width: 27%;
+    height: 40px;
+    font-size: 1.2em;
+}
+
+.create-btn {
+    width: 15%;
+    height: 40px;
+    background-color: rgb(35, 141, 9);
+    color: white;
+}
+
+.create-room-form .create-btn {
+    margin-top: 1%;
+    margin-left: 6.6%;
+}
+
+/* edit room page */
+
+.edit-room-form {
+    padding-top: 2%;
+    padding-left: 42%;
+}
+
+.edit-room-form input {
+    border: 1px solid greenyellow;
+    border-radius: 10px;
+    margin-top: 1%;
+    display: block;
+    width: 27%;
+    height: 40px;
+    font-size: 1.2em;
+}
+
+.save-btn {
+    width: 15%;
+    height: 40px;
+    background-color: rgb(35, 141, 9);
+    color: white;
+}
+
+.edit-room-form .save-btn {
+    margin-top: 1%;
+    margin-left: 6.6%;
+}
+
+/* view room page */
+
+.messages-container {
+    padding-left: 10%;
+}
+
+.members {
+    list-style-type: none;
+    color: white;
+}
+
+.user-options button {
+    display: block;
+}

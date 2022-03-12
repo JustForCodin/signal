@@ -26,11 +26,12 @@ def index():
 @login_required
 def view_room(room_id):
     room = get_room(room_id)
+    rooms = get_rooms_for_user(current_user.username)
     if room and is_room_member(room_id, current_user.username):
         room_members = get_room_members(room_id)
         messages = get_messages(room_id)
         return render_template('view_room.html', username=current_user.username, room=room, 
-            room_members=room_members, messages=messages)
+            room_members=room_members, messages=messages, rooms=rooms)
     return 'Room not found!', 404
 
 @socketio.on('join_room')
@@ -141,7 +142,7 @@ def edit_room(room_id):
             room_members_str = ",".join(new_members)
         return render_template('edit_room.html', room=room, room_members_str=room_members_str, message=message)
     else:
-        return 'Room not found', 404
+        return 'You have no admin rights to edit this room.', 404
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)

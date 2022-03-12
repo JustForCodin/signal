@@ -4,25 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
     <title>Signal - chat</title>
 </head>
 <body>
     <h1>Welcome to chat room: {{room.name}}</h1>
-    <div id="messages">
-        {% for message in messages %}
-            <div><b>{{ message.sender }}&nbsp;[{{ message.created_at }}]:&nbsp;</b> {{ message.text }}</div>
-        {% endfor %}
+    <div class="messages-container">
+        <div id="messages">
+            {% for message in messages %}
+                <div><b>{{ message.sender }}&nbsp;[{{ message.created_at }}]:&nbsp;</b> {{ message.text }}</div>
+            {% endfor %}
+        </div>
+        <form action="" id="message-form">
+            <input type="text" id="message-input" placeholder="Enter your message">
+            <button type="submit">Send</button>
+        </form>
     </div>
-    <form action="" id="message-form">
-        <input type="text" id="message-input" placeholder="Enter your message">
-        <button type="submit">Send</button>
-    </form>
-    <ul>
-        {% for member in room_members %}
-            <li>{{member._id.username}}</li>
-        {% endfor %}
-    </ul>
-    <div>
+    <div class="rooms-members">
+        <ul class="rooms">
+            {% for room in rooms %}
+                <li><a class="room-url" href="/rooms/{{room._id.room_id}}">{{ room.room_name }}</a></li>
+            {% endfor %}
+        </ul>
+        <ul class="members">
+            {% for member in room_members %}
+                <li>{{member._id.username}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="user-options">
+        <button id="edit-room-btn" type="submit">Edit room</button>
         <button id="logout-btn" type="submit">Logout</button>
     </div>
 </body>
@@ -53,6 +64,10 @@
 
     document.getElementById('logout-btn').onclick = (e) => {
         window.location = '/logout'
+    }
+
+    document.getElementById('edit-room-btn').onclick = (e) => {
+        window.location += '/edit'
     }
 
     socket.on('join_room_announcement', (data) => {
