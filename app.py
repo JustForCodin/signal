@@ -1,7 +1,4 @@
-from crypt import methods
 from datetime import datetime
-from email import message
-from hashlib import new
 from flask import Flask, redirect, render_template, request
 from flask_socketio import SocketIO, join_room, leave_room
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user

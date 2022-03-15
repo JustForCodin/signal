@@ -8,7 +8,7 @@
     <title>Signal - chat</title>
 </head>
 <body>
-    <h1>Welcome to chat room: {{room.name}}</h1>
+    <h1 class="room-name">Welcome to chat room: {{room.name}}</h1>
     <div class="rooms-members">
         <ul class="rooms">
             {% for room in rooms %}
@@ -21,14 +21,14 @@
             {% endfor %}
         </ul>
         <div class="user-options">
-            <button id="edit-room-btn" type="submit">Edit room</button>
-            <button id="logout-btn" type="submit">Logout</button>
+            <button class="edit-room-btn" type="submit">Edit room</button>
+            <button class="logout-btn" type="submit">Logout</button>
         </div>
     </div>
     <div class="messages-container">
         <div id="messages">
             {% for message in messages %}
-                <div>
+                <div class="message-text">
                     <b>{{ message.sender }}&nbsp;[{{ message.created_at }}]:&nbsp;</b> {{ message.text }}
                 </div>
             {% endfor %}
@@ -75,6 +75,7 @@
     socket.on('join_room_announcement', (data) => {
         console.log(data)
         const newNode = document.createElement('div')
+        newNode.className = 'message-info'
         newNode.innerHTML = `<b>${data.username}</b> has joined the room`
         document.getElementById('messages').appendChild(newNode)
     })
@@ -82,6 +83,7 @@
     socket.on('leave_room_announcement', (data) => {
         console.log(data)
         const newNode = document.createElement('div')
+        newNode.className = 'message-info'
         newNode.innerHTML = `<b>${data.username}</b> has left the room`
         document.getElementById('messages').appendChild(newNode)
     })

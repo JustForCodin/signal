@@ -238,14 +238,17 @@ button {
 }
 
 .messages-container .message-form {
-    margin-top: 3%;
+    margin-top: 10%; 
     position: sticky;
 }
 
 .messages-container .messages {
     max-height: 700px;
-    overflow-y: scroll;
-    display: block;
+}
+
+.message-text {
+    color: white;
+    font-size: 1.005em;
 }
 
 .message-form input {
@@ -265,13 +268,55 @@ button {
 .rooms-members {
     float: right;
     position: sticky;
+    margin-right: 3%;
+    width: 100px;
+}
+
+.rooms {
+    list-style-type: none;
+    overflow-x: auto;
 }
 
 .members {
     list-style-type: none;
+    margin-top: 12%;
     color: white;
+    overflow-x: auto;
 }
 
 .user-options button {
     display: block;
+}
+
+.message-info {
+    color: greenyellow;
+    font-size: 1.005em;
+}
+
+.rooms-members .edit-room-btn {
+    width: 120px;
+    height: 30px;
+    background-color: rgb(66, 168, 168);
+    color: white;
+    font-size: 1.4em;
+}
+
+.rooms-members .logout-btn {
+    width: 120px;
+    height: 30px;
+    background-color: red;
+    color: white;
+    font-size: 1.4em;
+}
+
+.rooms-members button {
+    margin-top: 1%;
+}
+
+.room-name {
+    color: white;
+    font-size: 1.7em;
+    background-color: rgb(66, 168, 168);
+    margin-bottom: 1%;
+    width: 100%;
 }
