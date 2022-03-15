@@ -14,6 +14,8 @@ rooms_collection = chat_db.get_collection("rooms")
 room_members_collection = chat_db.get_collection("room_members")
 messages_collection = chat_db.get_collection("messages")
 
+MESSAGES_FETCH_LIMIT = 35
+
 def save_user(username, email, password):
     password_hash = generate_password_hash(password)
     users_collection.insert_one({
@@ -94,9 +96,10 @@ def save_message(room_id, text, sender):
         'created_at': datetime.now()
     })
 
-def get_messages(room_id):
+def get_messages(room_id, page=0):
+    offset = MESSAGES_FETCH_LIMIT * page
     messages = list(
-        messages_collection.find({'room_id': ObjectId(room_id)}).sort('_id', DESCENDING))
+        messages_collection.find({'room_id': ObjectId(room_id)}).sort('_id', DESCENDING).limit(MESSAGES_FETCH_LIMIT).skip(offset))
     for message in messages:
         message['created_at'] = message['created_at'].strftime("%d %b, %H:%M")
     return messages[::-1]

@@ -9,17 +9,6 @@
 </head>
 <body>
     <h1>Welcome to chat room: {{room.name}}</h1>
-    <div class="messages-container">
-        <div id="messages">
-            {% for message in messages %}
-                <div><b>{{ message.sender }}&nbsp;[{{ message.created_at }}]:&nbsp;</b> {{ message.text }}</div>
-            {% endfor %}
-        </div>
-        <form action="" id="message-form">
-            <input type="text" id="message-input" placeholder="Enter your message">
-            <button type="submit">Send</button>
-        </form>
-    </div>
     <div class="rooms-members">
         <ul class="rooms">
             {% for room in rooms %}
@@ -31,10 +20,23 @@
                 <li>{{member._id.username}}</li>
             {% endfor %}
         </ul>
+        <div class="user-options">
+            <button id="edit-room-btn" type="submit">Edit room</button>
+            <button id="logout-btn" type="submit">Logout</button>
+        </div>
     </div>
-    <div class="user-options">
-        <button id="edit-room-btn" type="submit">Edit room</button>
-        <button id="logout-btn" type="submit">Logout</button>
+    <div class="messages-container">
+        <div id="messages">
+            {% for message in messages %}
+                <div>
+                    <b>{{ message.sender }}&nbsp;[{{ message.created_at }}]:&nbsp;</b> {{ message.text }}
+                </div>
+            {% endfor %}
+        </div>
+        <form action="" class="message-form" id="message-form">
+            <input type="text" id="message-input" placeholder="Enter your message">
+            <button class="send-btn" type="submit">Send</button>
+        </form>
     </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>

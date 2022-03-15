@@ -70,7 +70,7 @@ button {
     margin-left: 45%;
     margin-top: 2%;
     list-style-type: none;
-    overflow-y: scroll;
+    overflow-y: auto;
     width: 15%;
     height: 300px;
     font-size: 1.4em;
@@ -233,7 +233,38 @@ button {
 /* view room page */
 
 .messages-container {
-    padding-left: 10%;
+    width: 90%;
+    height: 900px;
+}
+
+.messages-container .message-form {
+    margin-top: 3%;
+    position: sticky;
+}
+
+.messages-container .messages {
+    max-height: 700px;
+    overflow-y: scroll;
+    display: block;
+}
+
+.message-form input {
+    border: 1px solid greenyellow;
+    border-radius: 10px;
+    height: 38px;
+    width: 50%;
+}
+
+.message-form .send-btn {
+    width: 15%;
+    height: 40px;
+    background-color: rgb(66, 168, 168);
+    color: white;
+}
+
+.rooms-members {
+    float: right;
+    position: sticky;
 }
 
 .members {
